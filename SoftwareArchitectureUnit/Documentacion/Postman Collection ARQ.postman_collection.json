@@ -1,0 +1,917 @@
+{
+	"info": {
+		"_postman_id": "a0f51f25-09c9-49db-94b3-e79026bf2a2f",
+		"name": "Collection ARQ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23679529"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login Auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responseJson = pm.response.json();\r",
+									"\r",
+									"// Obtener el valor del token y el mensaje del JSON de respuesta\r",
+									"const token = responseJson.token;\r",
+									"\r",
+									"// Establecer el valor del token como una variable global\r",
+									"pm.globals.set('token', token);\r",
+									"\r",
+									"// Mostrar el mensaje en la consola\r",
+									"console.log(pm.globals.token);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Marce\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/auth/logs",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"auth",
+								"logs"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Client",
+			"item": [
+				{
+					"name": "Register Client",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InBlw7Fhcm9sRXNRdWVtYXIiLCJwYXNzd29yZCI6IiQyYiQxMCR3RUlVMXVCWU9laDl6Q0pnUnlkVlRPcmVRMGc4aGU1SzY4VGtJcDFhWFVaUWg5ekR0bzhlYSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY4NjAxMDY3MSwiZXhwIjoxNjg2MzU2MjcxfQ.ILVvUECHkOZlPP700TUikMZc_4ke_kVirCRMhRCfXAg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"password\": \"password\",\r\n    \"username\": \"Marce\",\r\n  \"birthday\": \"1990-06-15\",\r\n  \"email\": \"johndoee@example.com\",\r\n  \"country\": \"USA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/client",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buy Event",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"eventName\": \"Cardellino\",\r\n    \"supplierName\": \"Denise\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3002/client/event",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"client",
+								"event"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Events",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3002/client/events",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"client",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consume event",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3002/client/events/:eventId",
+							"host": [
+								"localhost"
+							],
+							"port": "3002",
+							"path": [
+								"client",
+								"events",
+								":eventId"
+							],
+							"variable": [
+								{
+									"key": "eventId",
+									"value": "64934d9aa1371ff0c643d1ed"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Create Admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Aida\",\r\n    \"email\": \"aida@test.com\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/admin",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Supplier",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"Denise\",\r\n  \"address\": {\r\n    \"country\": \"United States\",\r\n    \"city\": \"New York\"\r\n  },\r\n  \"email\": \"denise@test.com\",\r\n  \"phone\": 1234509876,\r\n  \"currencyCode\": \"USD\",\r\n  \"currencyName\": \"Dollar\",\r\n  \"currencySymbol\": \"$\",\r\n  \"defaultPrice\": 11.99,\r\n  \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/admin/supplier",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin",
+								"supplier"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authorize event",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/admin/events/:eventId/authorize",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin",
+								"events",
+								":eventId",
+								"authorize"
+							],
+							"variable": [
+								{
+									"key": "eventId",
+									"value": "649378d0cad081c4b5380a8f"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reject Event",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/admin/events/:eventId/reject",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin",
+								"events",
+								":eventId",
+								"reject"
+							],
+							"variable": [
+								{
+									"key": "eventId",
+									"value": "649378d0cad081c4b5380a8f"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set Auth Mode",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"authMode\": \"manual\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/admin/events/authMode",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin",
+								"events",
+								"authMode"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify notification config",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"recipients\": [\n      \"6484eb90c3b94b2fc40ca8f0\",\n    \"6488f83927846d4945fb29c2\"\n    ],\n    \"hoursBeforeNotification\": 168\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/admin/notification-config",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin",
+								"notification-config"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get notification config",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/admin/notification-config",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin",
+								"notification-config"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logs Bitacora",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"from\": \"2023-06-17\",\r\n    \"to\": \"2023-06-20\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/admin/logs",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin",
+								"logs"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Supplier",
+			"item": [
+				{
+					"name": "Create Event",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Cardellino",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "algo\n",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "456.95 ",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "category",
+									"value": "Music",
+									"type": "text"
+								},
+								{
+									"key": "eventDatesInfo[startDate]",
+									"value": "2023-06-22",
+									"type": "text"
+								},
+								{
+									"key": "eventDatesInfo[endDate]",
+									"value": "2023-06-25",
+									"type": "text"
+								},
+								{
+									"key": "thumbnail",
+									"type": "file",
+									"src": "/Users/deniseappel/Desktop/1.png"
+								},
+								{
+									"key": "mainImage",
+									"type": "file",
+									"src": "/Users/deniseappel/Desktop/2.png"
+								},
+								{
+									"key": "video",
+									"type": "file",
+									"src": "/Users/deniseappel/Desktop/WhatsApp Video 2020-07-07 at 20.38.05.mp4"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3006/supplier/events",
+							"host": [
+								"localhost"
+							],
+							"port": "3006",
+							"path": [
+								"supplier",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Event",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Slow burnin",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "description",
+									"value": "alto concierto",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "150",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3006/supplier/events/:event",
+							"host": [
+								"localhost"
+							],
+							"port": "3006",
+							"path": [
+								"supplier",
+								"events",
+								":event"
+							],
+							"variable": [
+								{
+									"key": "event",
+									"value": "649378d0cad081c4b5380a8f"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send Email to Event Buyers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"message\": \"Mensaje de prueba para los compradores del evento\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3006/supplier/events/:eventId",
+							"host": [
+								"localhost"
+							],
+							"port": "3006",
+							"path": [
+								"supplier",
+								"events",
+								":eventId"
+							],
+							"variable": [
+								{
+									"key": "eventId",
+									"value": "648e3020391fc9a3faf6c147"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Confirm Email Reception",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Query",
+			"item": [
+				{
+					"name": "Consulta de todos los Eventos para Proveedores",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3005/supplier/events",
+							"host": [
+								"localhost"
+							],
+							"port": "3005",
+							"path": [
+								"supplier",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta de un Evento para Proveedores",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3005/supplier/events/:eventId",
+							"host": [
+								"localhost"
+							],
+							"port": "3005",
+							"path": [
+								"supplier",
+								"events",
+								":eventId"
+							],
+							"variable": [
+								{
+									"key": "eventId",
+									"value": "64934d9aa1371ff0c643d1ed"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta de Eventos Activos para Administradores",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3005/admin/active-events",
+							"host": [
+								"localhost"
+							],
+							"port": "3005",
+							"path": [
+								"admin",
+								"active-events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta de todos los Eventos para Administradores",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3005/admin/events?startDate=2023-06-15&endDate=2023-06-25",
+							"host": [
+								"localhost"
+							],
+							"port": "3005",
+							"path": [
+								"admin",
+								"events"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2023-06-15"
+								},
+								{
+									"key": "endDate",
+									"value": "2023-06-25"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta de todos los Eventos para Usuarios",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3005/client/events",
+							"host": [
+								"localhost"
+							],
+							"port": "3005",
+							"path": [
+								"client",
+								"events"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
