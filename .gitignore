@@ -1,0 +1,113 @@
+# Archivos de compilación
+*.o
+*.out
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Archivos de respaldo y temporales
+*~
+*.bak
+*.swp
+._*
+.DS_Store
+
+# Entornos y configuraciones específicas del sistema
+/.idea/
+/.vscode/
+/.vs/
+/.settings/
+/.project
+/.classpath
+/.metadata
+*.iml
+*.ipr
+*.iws
+Thumbs.db
+desktop.ini
+
+# Dependencias y directorios generados
+/node_modules/
+/bower_components/
+/.sass-cache/
+/.cache/
+/.bundle/
+/vendor/
+/.venv/
+*.env
+.env.*
+/.gradle/
+/build/
+/bin/
+/out/
+
+# Logs y archivos de registro
+*.log
+*.log.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+/.log/
+logs/
+
+# Archivos de respaldo de aplicaciones
+*.bak
+*.backup
+*.orig
+
+# Archivos de compilación de IDE
+/.vscode/
+/.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Configuración específica de lenguajes o frameworks
+*.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+.env.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env.debug
+.env.release
+
+# Dependencias específicas de lenguaje o framework
+/.python-version
+/.ruby-version
+/.ruby-gemset
+Gemfile.lock
+yarn.lock
+package-lock.json
+
+# Archivos de generación de documentación
+/.cache/
+/docs/
+
+# Archivos de construcción de contenedores
+Dockerfile
+docker-compose.yml
+
+# Dependencias de paquetes
+.pipenv/
+.Python
+.env
+
+# Archivos y directorios específicos de Django
+/db.sqlite3
+/media/
+/static/
+*.pyc
+*.pyo
+
+# Archivos y directorios específicos de React
+/public/
+/build/
+/.nyc_output/
+coverage/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
