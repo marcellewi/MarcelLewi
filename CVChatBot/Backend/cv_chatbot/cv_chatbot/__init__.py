@@ -1,0 +1,1 @@
+default_app_config = 'cv_chatbot.apps.CoreConfig'
